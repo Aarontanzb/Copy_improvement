@@ -1,3 +1,4 @@
+"use client";
 import React from 'react';
 import {
   Table,
@@ -8,42 +9,66 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table";
+import { ContentStructure } from "@/lib/types";
 
-const MainTable: React.FC = () => {
+
+interface MainTableProps {
+  generatedResult: ContentStructure | null;
+}
+
+const MainTable: React.FC<MainTableProps> = ({ generatedResult }) => {
   return (
     <Table>
-      <TableCaption>A list of your recent invoices.</TableCaption>
+      <TableCaption>Generated Result</TableCaption>
       <TableHeader>
         <TableRow>
-          <TableHead className="w-[100px]">Invoice</TableHead>
-          <TableHead>Status</TableHead>
-          <TableHead>Method</TableHead>
-          <TableHead className="text-right">Amount</TableHead>
+          <TableHead>Section</TableHead>
+          <TableHead>Text Snippet</TableHead>
+          <TableHead>Suggestion</TableHead>
         </TableRow>
       </TableHeader>
       <TableBody>
-        <TableRow>
-          <TableCell className="font-medium">INV001</TableCell>
-          <TableCell>Paid</TableCell>
-          <TableCell>Credit Card</TableCell>
-          <TableCell className="text-right">$250.00</TableCell>
-        </TableRow>
-        <TableRow>
-          <TableCell className="font-medium">INV002</TableCell>
-          <TableCell>Pending</TableCell>
-          <TableCell>PayPal</TableCell>
-          <TableCell className="text-right">$150.00</TableCell>
-        </TableRow>
-        <TableRow>
-          <TableCell className="font-medium">INV003</TableCell>
-          <TableCell>Unpaid</TableCell>
-          <TableCell>Bank Transfer</TableCell>
-          <TableCell className="text-right">$350.00</TableCell>
-        </TableRow>
+        {generatedResult ? (
+          <>
+            <TableRow>
+              <TableCell>Header</TableCell>
+              <TableCell>{generatedResult.Header.textSnippet}</TableCell>
+              <TableCell>{generatedResult.Header.suggestion}</TableCell>
+            </TableRow>
+            <TableRow>
+              <TableCell>Hero Section</TableCell>
+              <TableCell>{generatedResult.HeroSection.textSnippet}</TableCell>
+              <TableCell>{generatedResult.HeroSection.suggestion}</TableCell>
+            </TableRow>
+            <TableRow>
+              <TableCell>Features & Benefits</TableCell>
+              <TableCell>{generatedResult.FeaturesBenefits.textSnippet}</TableCell>
+              <TableCell>{generatedResult.FeaturesBenefits.suggestion}</TableCell>
+            </TableRow>
+            <TableRow>
+              <TableCell>Testimonials</TableCell>
+              <TableCell>{generatedResult.Testimonials.textSnippet}</TableCell>
+              <TableCell>{generatedResult.Testimonials.suggestion}</TableCell>
+            </TableRow>
+            <TableRow>
+              <TableCell>Call to Action</TableCell>
+              <TableCell>{generatedResult.CallToAction.textSnippet}</TableCell>
+              <TableCell>{generatedResult.CallToAction.suggestion}</TableCell>
+            </TableRow>
+            <TableRow>
+              <TableCell>Footer</TableCell>
+              <TableCell>{generatedResult.Footer.textSnippet}</TableCell>
+              <TableCell>{generatedResult.Footer.suggestion}</TableCell>
+            </TableRow>
+          </>
+        ) : (
+          <TableRow>
+            <TableCell colSpan={3}>No result generated yet</TableCell>
+          </TableRow>
+        )}
       </TableBody>
     </Table>
   );
 };
 
 export default MainTable;
-
