@@ -4,6 +4,6 @@ Welcome to the **Website Copy Improvement** repository! This is a simple tool bu
 
 ## Overview
 
-It was created in a hacky way when working on Wordware, where structured outputs were not working well, and there was no existing frontend solution. The goal is to provide users with actionable insights on improving their website's copy, helping to enhance clarity, engagement, and overall user experience.
+It was created in a hacky way when working on Wordware, where structured outputs were not working well, and there was no existing frontend solution. The goal is to provide users with actionable insights on improving their website's copy, helping to enhance clarity, engagement, and overall UX.
 
 ## Wordware hire me pls
