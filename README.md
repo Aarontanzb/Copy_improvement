@@ -6,4 +6,14 @@ Welcome to the **Website Copy Improvement** repository! This is a simple tool bu
 
 It was created in a hacky way when working on Wordware, where structured outputs were not working well, and there was no existing frontend solution. The goal is to provide users with actionable insights on improving their website's copy, helping to enhance clarity, engagement, and overall UX.
 
+## Getting Started
+To run this example, simply clone this repo and do:
+
+```
+npm install
+npm run dev
+```
+
 ## Wordware hire me pls
+
+Edit: WebScraper takes too long hence Vercel link does not work :(
