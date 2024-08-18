@@ -5,13 +5,15 @@ import { ContentStructure } from "@/lib/types";
 
 interface MainInputProps {
   onResultGenerated: (result: ContentStructure) => void;
+  onGenerateStart: () => void;
 }
 
-const MainInput: React.FC<MainInputProps> = ({ onResultGenerated }) => {
+const MainInput: React.FC<MainInputProps> = ({ onResultGenerated, onGenerateStart }) => {
   const [input, setInput] = useState('');
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    onGenerateStart(); // Call this function when generation starts
     try {
       // Log the input to ensure it's correct
       const response = await fetch('/api/generate', {
@@ -32,6 +34,7 @@ const MainInput: React.FC<MainInputProps> = ({ onResultGenerated }) => {
       onResultGenerated(data); // Pass the result as ContentStructure
     } catch (error) {
       console.error('Error:', error);
+      onResultGenerated(null); // Reset loading state on error
     }
   };
 

@@ -36,7 +36,7 @@ export async function POST(request: Request) {
           inputs: {
             url: url.trim(),
           },
-          version: "^1.5",
+          version: "^1.6",
         }),
         headers: {
           Authorization: `Bearer ${process.env.WORDWARE_API_KEY}`,

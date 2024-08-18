@@ -11,12 +11,12 @@ import {
 } from "@/components/ui/table";
 import { ContentStructure } from "@/lib/types";
 
-
 interface MainTableProps {
   generatedResult: ContentStructure | null;
+  isLoading: boolean;
 }
 
-const MainTable: React.FC<MainTableProps> = ({ generatedResult }) => {
+const MainTable: React.FC<MainTableProps> = ({ generatedResult, isLoading }) => {
   return (
     <Table>
       <TableCaption>Generated Result</TableCaption>
@@ -28,7 +28,13 @@ const MainTable: React.FC<MainTableProps> = ({ generatedResult }) => {
         </TableRow>
       </TableHeader>
       <TableBody>
-        {generatedResult ? (
+        {isLoading ? (
+          <TableRow>
+            <TableCell colSpan={3} className="text-center">
+              Loading... Please wait.
+            </TableCell>
+          </TableRow>
+        ) : generatedResult ? (
           <>
             <TableRow>
               <TableCell>Header</TableCell>

@@ -9,7 +9,7 @@ export default function Home() {
   return (
     <main className={styles.main}>
       <div className="flex flex-col items-center">
-        <h1 className="text-4xl font-bold mb-8 text-center">Site copy improvement</h1>
+        <h1 className="text-4xl font-bold mb-8 text-center">Website copy improvement</h1>
         <div className="mb-16">
           <MainContainer />
         </div>
