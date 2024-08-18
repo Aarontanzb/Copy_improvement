@@ -34,7 +34,6 @@ const MainInput: React.FC<MainInputProps> = ({ onResultGenerated, onGenerateStar
       onResultGenerated(data); // Pass the result as ContentStructure
     } catch (error) {
       console.error('Error:', error);
-      onResultGenerated(null); // Reset loading state on error
     }
   };
 
