@@ -61,7 +61,7 @@ export async function POST(request: Request) {
       const client = new OpenAI({ apiKey: process.env.OPENAI_API_KEY });
 
       const completion = await client.beta.chat.completions.parse({
-        model: 'gpt-4o-mini',
+        model: 'gpt-4o-2024-08-06',
         messages: [
           {
             role: "system",
