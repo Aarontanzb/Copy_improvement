@@ -19,7 +19,7 @@ const ContentSchema = z.object({
   Footer: SectionSchema,
 });
 
-export const maxDuration = 60;
+export const maxDuration = 300;
 
 export async function POST(request: Request) {
   try {
