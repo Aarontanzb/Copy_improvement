@@ -31,7 +31,7 @@ const MainTable: React.FC<MainTableProps> = ({ generatedResult, isLoading }) => 
         {isLoading ? (
           <TableRow>
             <TableCell colSpan={3} className="text-center">
-              Loading... Please wait.
+              Hang tight... Might take a minute or two!
             </TableCell>
           </TableRow>
         ) : generatedResult ? (
