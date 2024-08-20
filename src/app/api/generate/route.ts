@@ -2,7 +2,6 @@ import OpenAI from 'openai';
 import { zodResponseFormat } from 'openai/helpers/zod';
 import { z } from 'zod';
 
-export const runtime = "edge";
 
 // Define the schema for each section
 const SectionSchema = z.object({
@@ -20,25 +19,18 @@ const ContentSchema = z.object({
   Footer: SectionSchema,
 });
 
+export const maxDuration = 60;
+
 export async function POST(request: Request) {
   try {
     const rawBody = await request.text();
+
     const { url } = JSON.parse(rawBody);
 
-    if (!url) {
-      return new Response(JSON.stringify({ error: 'Invalid request. Provide a valid url.' }), {
-        status: 400,
-        headers: { 'Content-Type': 'application/json' },
-      });
-    }
+    if (url) {
+      // Wordware API call
+      const apiUrl = "https://app.wordware.ai/api/released-app/a69539da-b825-40ce-81f6-7b1fc86f1e86/run";
 
-    // Wordware API call
-    const apiUrl = "https://app.wordware.ai/api/released-app/a69539da-b825-40ce-81f6-7b1fc86f1e86/run";
-
-    const controller = new AbortController();
-    const timeoutId = setTimeout(() => controller.abort(), 60000); // 1 minute timeout
-
-    try {
       const response = await fetch(apiUrl, {
         method: "post",
         body: JSON.stringify({
@@ -51,30 +43,7 @@ export async function POST(request: Request) {
           Authorization: `Bearer ${process.env.WORDWARE_API_KEY}`,
           'Content-Type': 'application/json'
         },
-        signal: controller.signal
       });
-
-      clearTimeout(timeoutId);
-
-      // Initial response to prevent timeout
-      const stream = new ReadableStream({
-        start(controller) {
-          controller.enqueue('{"status":"processing"}');
-        }
-      });
-
-      return new Response(stream, {
-        headers: { 'Content-Type': 'application/json' },
-      });
-    } catch (error: unknown) {
-      if (error instanceof Error && error.name === 'AbortError') {
-        return new Response(JSON.stringify({ error: 'Request timed out' }), {
-          status: 504,
-          headers: { 'Content-Type': 'application/json' },
-        });
-      }
-      throw error;
-    }
 
       const responseText = await response.text();
       console.log('Response text:', responseText);
